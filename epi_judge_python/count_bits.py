@@ -5,7 +5,7 @@ def count_bits(x: int) -> int:
     # TODO - you fill in here.
     num_bits = 0
     while x:
-        num_bits += x & 1
+        num_bits += x & 1  # not(x & 1) for counting zeros
         x >>= 1
     return num_bits
 
