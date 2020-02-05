@@ -4,27 +4,18 @@ from test_framework import generic_test
 
 def is_palindrome_number(x: int) -> bool:
     # TODO - you fill in here.
-    if x < 0:
-        return False
+    if x <= 0:
+        return x == 0
 
-    if x == 0:
-        return True
+    n = math.floor(math.log10(x)) + 1
+    msd_mask = math.pow(10, n - 1)
 
-    n = float('inf')
-    while n > 2 and x != 0:
-        print('')
-        print(x, x % 10)
-        lsd = x % 10
-        print('lsd', lsd)
-        n = math.floor(math.log10(x)) + 1
-        print('n', n)
-        msd = int(x // math.pow(10, n-1))
-        print('msd', msd)
-        if (lsd != msd):
+    for i in range(n // 2):
+        if x // msd_mask != x % 10:
             return False
-        else:
-            x = int(x % (msd * math.pow(10, n-1)))
-            x = x // 10
+        x %= msd_mask
+        x //= 10
+        msd_mask //= 100
     return True
 
 
